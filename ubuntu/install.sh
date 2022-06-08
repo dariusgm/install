@@ -1,6 +1,11 @@
 cp .bashrc ~/.bashrc
 cp .bash_aliases ~/.bash_aliases
 cp update.sh ~/update.sh
+chmod +x ~/update.sh
+
+# aws
+mkdir -p ~/.aws
+cp credentials ~/.aws/credentials
 
 echo "basics"
 ./basic.sh
