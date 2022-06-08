@@ -1,0 +1,23 @@
+{
+    "bootstrapped": true,
+    "in_process_packages": [],
+    "installed_packages": [
+        "AutoFileName",
+        "Dockerfile Syntax Highlighting",
+        "IPython Notebook",
+        "LSP",
+        "LSP-bash",
+        "LSP-dockerfile",
+        "LSP-html",
+        "LSP-json",
+        "LSP-metals",
+        "LSP-pylsp",
+        "LSP-pyright",
+        "LSP-typescript",
+        "LSP-yaml",
+        "Package Control",
+        "Python 3",
+        "SideBarEnhancements",
+        "Terminal",
+    ],
+}

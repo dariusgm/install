@@ -1,0 +1,41 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+choco feature enable -n allowGlobalConfirmation
+choco install googlechrome
+choco install jre8
+choco install 7zip
+choco install notepadplusplus
+choco install vlc
+choco install git
+choco install putty
+choco install python3
+choco install libreoffice
+choco install atom
+choco install calibre
+choco install git-lfs
+choco install spotify
+choco install sublimetext3
+choco install slack
+choco install audacity
+choco install maven
+choco install jq
+choco install steam
+choco install winscp
+choco install rufus
+choco install docker-desktop
+choco install pycharm-community
+choco install treesizefree
+choco install github-desktop
+choco install discord
+choco install minecraft
+choco install origin
+choco install vnc-viewer
+choco install pdfxchangeeditor
+choco install keeweb
+choco install freefilesync
+choco install veracrypt
+choco install pyenv-win
+[System.Environment]::SetEnvironmentVariable('PYENV',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+[System.Environment]::SetEnvironmentVariable('PYENV_ROOT',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+[System.Environment]::SetEnvironmentVariable('PYENV_HOME',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+[System.Environment]::SetEnvironmentVariable('path', $env:USERPROFILE + "\.pyenv\pyenv-win\bin;" + $env:USERPROFILE + "\.pyenv\pyenv-win\shims;" + [System.Environment]::GetEnvironmentVariable('path', "User"),"User")
+

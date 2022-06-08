@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+spark2-shell --conf spark.driver.memory=2g --conf spark.executor.memory=4g --conf spark.dynamicAllocation.enabled=true --conf spark.dynamicAllocation.initialExecutors=1 --conf spark.dynamicAllocation.maxExecutors=1000 --packages com.databricks:spark-avro_2.11:4.0.0
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>spark-shell/</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+</snippet>

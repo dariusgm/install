@@ -1,0 +1,72 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+  "lsp_format_on_save": true,
+  "clients": {
+    "diagnostic-ls": {
+      "enabled": true,
+      "command": [
+        "diagnostic-languageserver",
+        "--stdio"
+      ],
+      "selector": "source.shell.bash",
+      "initializationOptions": {
+        "linters": {
+          "shellcheck": {
+            "command": "shellcheck",
+            "args": [
+              "--format=json",
+              "-"
+            ],
+            "debounce": 100,
+            "formatLines": 1,
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "shellcheck",
+            "parseJson": {
+              "line": "line",
+              "column": "column",
+              "endLine": "endLine",
+              "endColumn": "endColumn",
+              "security": "level",
+              "message": "\\${message} [\\${code}]",
+            },
+            "securities": {
+              "error": "error",
+              "warning": "warning",
+              "note": "info",
+            },
+          }
+        },
+        "formatters": {},
+        "filetypes": {
+          "shellscript": "shellcheck",
+        }
+      }
+    },
+    "pylsp": {
+      "enabled": true,
+      "command": [
+        "pipenv run pyls"
+      ],
+      "settings": {
+        "pyls": {
+          "configurationSources": [
+            "flake8"
+          ],
+          "plugins": {
+            "jedi_definition": {
+              "follow_imports": true
+            }
+          }
+        }
+      },
+      "scopes": [
+        "source.python"
+      ],
+      "syntaxes": [
+        "Packages/Python/Python.sublime-syntax"
+      ],
+      "languageId": "python"
+    }
+  }
+}
