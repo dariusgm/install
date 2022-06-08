@@ -9,16 +9,24 @@ cp credentials ~/.aws/credentials
 
 echo "basics"
 ./basic.sh
+
 echo "spotify"
 ./spotify.sh
+
 echo "pyenv"
 ./pyenv.sh
+
 echo "cdk"
 ./cdk.sh
+
 echo "docker"
 ./docker.sh
+
 echo "sublime"
 ./sublime.sh
 
 echo "toolbox"
 ./toolbox.sh
+
+echo "rust"
+./rust.sh
