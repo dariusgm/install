@@ -34,6 +34,14 @@ echo "rust"
 echo "streamdeck-ui"
 ./streamdeck.sh
 
+echo "windows_debugging.sh"
+./windows_debugging.sh
+
+# echo "adm driver"
+# ./amd.sh
+
+# echo "nvidia driver"
+# ./nvidia.sh
 
 
 echo "add streamdeck to autostart"
