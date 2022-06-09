@@ -30,3 +30,10 @@ echo "toolbox"
 
 echo "rust"
 ./rust.sh
+
+echo "streamdeck-ui"
+./streamdeck.sh
+
+
+
+echo "add streamdeck to autostart"
