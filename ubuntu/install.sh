@@ -10,8 +10,8 @@ cp credentials ~/.aws/credentials
 echo "basics"
 ./basic.sh
 
-echo "spotify"
-./spotify.sh
+echo "snaps"
+./snap.sh
 
 echo "pyenv"
 ./pyenv.sh
