@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=streamdeck
+Exec=streamdeck
+X-GNOME-Autostart-enabled=true
