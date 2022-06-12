@@ -9,3 +9,5 @@ sudo npm install -g diagnostic-languageserver
 mkdir -p ~/.config/sublime-text/Packages/User
 cp -f ../*.sublime-settings ~/.config/sublime-text/Packages/User
 cp -f ../*.sublime-snippet ~/.config/sublime-text/Packages/User
+
+rm sublime-text_build-4126_amd64.deb
