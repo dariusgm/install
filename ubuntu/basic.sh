@@ -1,5 +1,3 @@
 sudo apt update -y
-sudo apt-get install -y curl git vim
+sudo apt-get install -y curl git vim ncdu
 
-git config --global user.email "darius@murawski.blog"
-git config --global user.name "Darius Murawski"

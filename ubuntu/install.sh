@@ -43,5 +43,6 @@ echo "windows_debugging.sh"
 # echo "nvidia driver"
 # ./nvidia.sh
 
-
-echo "add streamdeck to autostart"
+echo "setup git"
+echo 'git config --global user.email '
+echo 'git config --global user.name '
