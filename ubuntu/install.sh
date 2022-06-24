@@ -46,3 +46,4 @@ echo "windows_debugging.sh"
 echo "setup git"
 echo 'git config --global user.email '
 echo 'git config --global user.name '
+git config pull.rebase true
