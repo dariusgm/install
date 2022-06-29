@@ -1,4 +1,5 @@
-sudo apt-get install -y ethtool
-sudo cp wake-on-lan/50-wired.link /etc/systemd/network/50-wired.link
-sudo systemctl enable wol.service 
-sudo systemctl daemon-reload
+sudo apt-get install -y netplan.io
+python3 wake-on-lan/config.py
+sudo cp wake-on-lan/00-installer-config.yaml /etc/netplan/00-installer-config.yaml
+sudo systemctl enable systemd-networkd.service
+sudo netplan apply

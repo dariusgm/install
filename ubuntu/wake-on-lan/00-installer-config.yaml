@@ -1,0 +1,10 @@
+
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+     enp39s0:
+      match:
+        macaddress: d8:bb:c1:89:74:57
+      dhcp4: true
+      wakeonlan: true
