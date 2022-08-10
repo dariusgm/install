@@ -11,3 +11,9 @@ sudo apt install -y xdg-desktop-portal xdg-desktop-portal-gnome
 systemctl --user daemon-reload
 systemctl --user --now disable pulseaudio.service pulseaudio.socket
 systemctl --user --now enable pipewire pipewire-pulse
+# add kmcaster for key presses
+sudo apt-get install -y openjdk-18-jdk
+mkdir -p ~/apps
+curl -L https://github.com/DaveJarvis/kmcaster/releases/latest/download/kmcaster.jar -o kmcaster.jar
+# to execute:
+# java -jar ~/apps/kmcaster.jar
