@@ -37,6 +37,9 @@ echo "streamdeck-ui"
 echo "windows_debugging.sh"
 ./windows_debugging.sh
 
+echo "kdenlive.sh - video editing"
+./kdenlive.sh
+
 # echo "adm driver"
 # ./amd.sh
 
