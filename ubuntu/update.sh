@@ -6,4 +6,4 @@ sudo snap refresh || true
 
 pip install --upgrade pip
 cd ~/.pyenv &&  git pull
-pip3 install streamdeck-ui
+pip3 install --upgrade streamdeck-ui
