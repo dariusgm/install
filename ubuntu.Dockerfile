@@ -74,11 +74,13 @@ RUN pip3 install --upgrade streamdeck-ui || true
 
 ADD . /root/install
 # ubuntu/streamdeck.sh
-RUN sudo apt update -y && sudo apt upgrade -y
-RUN sudo apt install -y libhidapi-libusb0 libxcb-xinerama0
+RUN sudo apt-get update -y
+RUN sudo apt-get install -y libhidapi-libusb0 libxcb-xinerama0 udev
+RUN sudo mkdir -p /etc/udev/rules.d
 RUN sudo cp ~/install/streamdeck/70-streamdeck.rules /etc/udev/rules.d/70-streamdeck.rules
-RUN sudo udevadm control --reload-rules
-RUN pip3  install --user streamdeck_ui
+RUN sudo udevadm control --reload-rules || true
+RUN pip3  install --user streamdeck_ui || true
+RUN mkdir -p ~/.config/autostart
 RUN cp ~/install/streamdeck/streamdeck_autostart.desktop ~/.config/autostart
 # ubuntu/sublime.sh
 RUN # download manual latest
