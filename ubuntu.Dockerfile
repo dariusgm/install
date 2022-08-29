@@ -67,14 +67,16 @@ RUN sudo apt-get upgrade -y
 RUN sudo apt-get update -y --fix-missing
 RUN sudo apt-get dist-upgrade -y
 RUN sudo apt-get autoremove -y
-RUN cd ~/.pyenv &&  git pull
 RUN sudo snap refresh || true
+RUN pip3 install --upgrade pip || true
+RUN cd ~/.pyenv &&  git pull
+RUN pip3 install --upgrade streamdeck-ui || true
 
 ADD . /root/install
 # ubuntu/streamdeck.sh
-RUN sudo apt-get update && sudo apt upgrade
-RUN sudo apt-get install -y libhidapi-libusb0 libxcb-xinerama0
-RUN sudo cp ../streamdeck/70-streamdeck.rules /etc/udev/rules.d/70-streamdeck.rules
+RUN sudo apt update -y && sudo apt upgrade -y
+RUN sudo apt install -y libhidapi-libusb0 libxcb-xinerama0
+RUN sudo cp ~/install/streamdeck/70-streamdeck.rules /etc/udev/rules.d/70-streamdeck.rules
 RUN sudo udevadm control --reload-rules
 RUN pip3  install --user streamdeck_ui
 RUN cp ~/install/streamdeck/streamdeck_autostart.desktop ~/.config/autostart

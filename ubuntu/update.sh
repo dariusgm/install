@@ -4,6 +4,6 @@ sudo apt-get dist-upgrade -y
 sudo apt-get autoremove -y
 sudo snap refresh || true
 
-pip install --upgrade pip
+pip3 install --upgrade pip || true
 cd ~/.pyenv &&  git pull
-pip3 install --upgrade streamdeck-ui
+pip3 install --upgrade streamdeck-ui || true
