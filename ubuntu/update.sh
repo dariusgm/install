@@ -7,3 +7,4 @@ sudo snap refresh || true
 pip3 install --upgrade pip || true
 cd ~/.pyenv &&  git pull
 pip3 install --upgrade streamdeck-ui || true
+rustup update || true
