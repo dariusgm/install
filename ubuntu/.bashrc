@@ -126,4 +126,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # streamdeck
-export PATH="/home/darius/.local/bin:$PATH"
+export PATH="/home/$HOME/.local/bin:$PATH"

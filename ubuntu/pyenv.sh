@@ -7,10 +7,10 @@ rm -rf ~/.pyenv
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-touch "$HOME/.bashrc"
-eval "$(pyenv init -)" >> "$HOME/.bashrc"
-pyenv install $(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 )
-pyenv global $(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1)  || true
+# this is done by the file copy
+# eval "$(pyenv init -)" >> "$HOME/.bashrc"
+LATEST=$(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 )
+pyenv install $LATEST 
+pyenv global $LATEST
 pyenv rehash || true
 ~/.pyenv/versions/$LATEST/bin/python3.10 -m pip install --upgrade pip || true
-

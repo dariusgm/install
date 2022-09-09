@@ -1,11 +1,5 @@
-cp .bashrc ~/.bashrc
-cp .bash_aliases ~/.bash_aliases
 cp update.sh ~/update.sh
 chmod +x ~/update.sh
-
-# aws
-mkdir -p ~/.aws
-cp credentials ~/.aws/credentials
 
 echo "basics"
 ./basic.sh
@@ -45,6 +39,9 @@ echo "kdenlive.sh - video editing"
 
 # echo "nvidia driver"
 # ./nvidia.sh
+
+echo "update everythig once again and run auto remove"
+./update.sh
 
 echo "setup git"
 echo 'git config --global user.email '

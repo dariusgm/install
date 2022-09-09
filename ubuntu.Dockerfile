@@ -13,7 +13,9 @@ RUN sudo apt-get update -y
 RUN # net-tools for ifconfig
 RUN # nethog for network traffic monitoring
 RUN # iotop for IO monitoring
-RUN sudo apt-get install -y curl git vim ncdu net-tools nethogs htop iotop
+RUN sudo apt-get install -y curl git vim ncdu net-tools nethogs htop iotop jq
+RUN cp .bashrc ~/.bashrc
+RUN cp .bash_aliases ~/.bash_aliases
 # RUN bash ~/install/ubuntu/snap.sh
 
 # ubuntu/pyenv.sh
@@ -25,10 +27,11 @@ RUN rm -rf ~/.pyenv
 RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 RUN export PYENV_ROOT="$HOME/.pyenv"
 RUN command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-RUN touch "$HOME/.bashrc"
-RUN eval "$(pyenv init -)" >> "$HOME/.bashrc"
-RUN pyenv install $(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 )
-RUN pyenv global $LATEST || true
+RUN # this is done by the file copy
+RUN # eval "$(pyenv init -)" >> "$HOME/.bashrc"
+RUN LATEST=$(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 )
+RUN pyenv install $LATEST 
+RUN pyenv global $LATEST
 RUN pyenv rehash || true
 RUN ~/.pyenv/versions/$LATEST/bin/python3.10 -m pip install --upgrade pip || true
 # ubuntu/cdk.sh
@@ -37,16 +40,22 @@ RUN curl -s https://deb.nodesource.com/setup_18.x | sudo bash
 RUN sudo apt-get install -y nodejs
 RUN node -v
 RUN sudo npm install -g aws-cdk
-RUN # aws cdk
+RUN # aws cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN sudo ./aws/install
+RUN rm awscliv2.zip
+RUN rm -rf aws
+RUN mkdir -p ~/.aws
+RUN cp credentials ~/.aws/credentials
 # ubuntu/docker.sh
 RUN #!/bin/bash
 RUN sudo apt-get update -y
-RUN sudo apt-get install -y docker.io systemctl
-RUN sudo systemctl start docker.service || true
-RUN sudo systemctl enable docker.service || true
+RUN sudo apt install -y ca-certificates curl gnupg lsb-release
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+RUN sudo apt-get update -y
+RUN sudo apt install docker-ce docker-ce-cli containerd.io -y
 RUN pip3 install wheel || true
 RUN pip3 install docker-compose || true
 RUN sudo usermod -aG docker $USER || true
@@ -71,6 +80,7 @@ RUN sudo snap refresh || true
 RUN pip3 install --upgrade pip || true
 RUN cd ~/.pyenv &&  git pull
 RUN pip3 install --upgrade streamdeck-ui || true
+RUN rustup update || true
 
 ADD . /root/install
 # ubuntu/streamdeck.sh
@@ -89,9 +99,8 @@ RUN curl https://download.sublimetext.com/sublime-text_build-4126_amd64.deb -o s
 RUN sudo dpkg -i sublime-text_build-4126_amd64.deb
 RUN rm sublime-text_build-4126_amd64.deb
 RUN # sudo npm install -g diagnostic-languageserver
-RUN # install snippets
+RUN # install snippets and settings
 RUN mkdir -p ~/.config/sublime-text/Packages/User
-RUN ls -lah ~/install/
 RUN cp -f ~/install/*.sublime-settings ~/.config/sublime-text/Packages/User
 RUN cp -f ~/install/*.sublime-snippet ~/.config/sublime-text/Packages/User
 
