@@ -11,11 +11,25 @@ exampes inside the ubuntu directory.
 Before you can continue, we need `git` and a small first udate of everything.
 ```bash
 sudo apt-get update -y && sudo apt-get install -y git
-cd && git clone git@github.com:dariusgm/install.git && cd install/ubuntu && ./install.sh
 ```
 
-ubuntu installation
-./ubuntu/install.sh
+# Instalation
+## Ubuntu 22.04
+```bash
+cd && git clone git@github.com:dariusgm/install.git && cd install/ubuntu && ./install.sh
+```
+# Post Installation
+```bash
+git config --global user.email me@example.com
+git config --global user.name "Example Me"
+git config pull.rebase true
+```
+
+# CI
+## Ubuntu 22.04
+I implemented a python scrit that inject all different bash scripts together.
+Otherwise your docker cache would be invalid at the time, making debugging in the CI build very 
+time consuming.
 
 ```bash
 python3 build-docker.py

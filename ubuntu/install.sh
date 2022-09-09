@@ -1,38 +1,39 @@
 cp update.sh ~/update.sh
 chmod +x ~/update.sh
+mkdir -p ~/install/logs
 
 echo "basics"
-./basic.sh
+./basic.sh > ~/install/logs/basic.log
 
 echo "snaps"
-./snap.sh
+./snap.sh > ~/install/logs/snap.log
 
 echo "pyenv"
-./pyenv.sh
+./pyenv.sh > ~/install/logs/pyenv.log
 
-echo "cdk"
-./cdk.sh
+echo "aws"
+./aws.sh > ~/install/logs/aws.log
 
 echo "docker"
-./docker.sh
+./docker.sh > ~/install/logs/docker.log
 
 echo "sublime"
-./sublime.sh
+./sublime.sh > ~/install/logs/sublime.log
 
 echo "toolbox"
-./toolbox.sh
+./toolbox.sh > ~/install/logs/toolbox.log
 
 echo "rust"
-./rust.sh
+./rust.sh > ~/install/logs/rust.log
 
 echo "streamdeck-ui"
-./streamdeck.sh
+./streamdeck.sh > ~/install/logs/streamdeck.log
 
-echo "windows_debugging.sh"
-./windows_debugging.sh
+echo "windows_debugging"
+./windows_debugging.sh > ~/install/logs/windows_debugging.log
 
-echo "kdenlive.sh - video editing"
-./kdenlive.sh
+echo "kdenlive - video editing"
+./kdenlive.sh > ~/install/logs/kdenlive.log
 
 # echo "adm driver"
 # ./amd.sh
@@ -41,7 +42,7 @@ echo "kdenlive.sh - video editing"
 # ./nvidia.sh
 
 echo "update everythig once again and run auto remove"
-./update.sh
+./update.sh > ~/install/logs/update.log
 
 echo "setup git"
 echo 'git config --global user.email '
