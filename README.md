@@ -10,7 +10,7 @@ exampes inside the ubuntu directory.
 ## Ubuntu 22.04
 Before you can continue, we need `git` and a small first udate of everything.
 ```bash
-sudo apt-get update -y && sudo apt-get install -y git
+sudo apt-get update -y && sudo apt-get install -y git && ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 ```
 
 # Instalation
