@@ -12,7 +12,6 @@ RUN echo "ubuntu/basic.sh" && bash ~/install/ubuntu/basic.sh
 # RUN bash ~/install/ubuntu/snap.sh
 
 RUN echo "ubuntu/pyenv.sh" && bash ~/install/ubuntu/pyenv.sh
-RUN echo "ubuntu/cdk.sh" && bash ~/install/ubuntu/cdk.sh
 RUN echo "ubuntu/docker.sh" && bash ~/install/ubuntu/docker.sh
 RUN echo "ubuntu/toolbox.sh" && bash ~/install/ubuntu/toolbox.sh
 RUN echo "ubuntu/rust.sh" && bash ~/install/ubuntu/rust.sh
@@ -20,6 +19,7 @@ RUN echo "ubuntu/windows_debugging.sh" && bash ~/install/ubuntu/windows_debuggin
 RUN echo "ubuntu/update.sh" && bash ~/install/ubuntu/update.sh
 
 ADD . /root/install
+RUN echo "ubuntu/aws.sh" && bash ~/install/ubuntu/aws.sh
 RUN echo "ubuntu/streamdeck.sh" && bash ~/install/ubuntu/streamdeck.sh
 RUN echo "ubuntu/sublime.sh" && bash ~/install/ubuntu/sublime.sh
 

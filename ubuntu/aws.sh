@@ -10,7 +10,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 mkdir -p ~/.aws
-cp credentials ~/.aws/credentials
+cp ~/install/ubuntu/credentials ~/.aws/credentials
 
 rm awscliv2.zip
 rm -rf aws

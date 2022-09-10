@@ -14,8 +14,8 @@ RUN # net-tools for ifconfig
 RUN # nethog for network traffic monitoring
 RUN # iotop for IO monitoring
 RUN sudo apt-get install -y curl git vim ncdu net-tools nethogs htop iotop jq
-RUN cp .bashrc ~/.bashrc
-RUN cp .bash_aliases ~/.bash_aliases
+RUN # cp .bashrc ~/.bashrc
+RUN # cp .bash_aliases ~/.bash_aliases
 # RUN bash ~/install/ubuntu/snap.sh
 
 # ubuntu/pyenv.sh
@@ -29,38 +29,29 @@ RUN export PYENV_ROOT="$HOME/.pyenv"
 RUN command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 RUN # this is done by the file copy
 RUN # eval "$(pyenv init -)" >> "$HOME/.bashrc"
-RUN LATEST=$(pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 )
-RUN pyenv install $LATEST 
-RUN pyenv global $LATEST
+RUN pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 | awk -F'[[:space:]]' '{print $NF}' > long.txt
+RUN cat long.txt | awk -F'[[:space:]]' '{print $NF}' | awk -F'\.' '{print $1"."$2}' > short.txt
+RUN pyenv install $(cat long.txt) 
+RUN pyenv global $(cat long.txt)
 RUN pyenv rehash || true
-RUN ~/.pyenv/versions/$LATEST/bin/python3.10 -m pip install --upgrade pip || true
-# ubuntu/cdk.sh
-RUN sudo apt-get install -y unzip curl
-RUN curl -s https://deb.nodesource.com/setup_18.x | sudo bash
-RUN sudo apt-get install -y nodejs
-RUN node -v
-RUN sudo npm install -g aws-cdk
-RUN # aws cli
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN sudo ./aws/install
-RUN rm awscliv2.zip
-RUN rm -rf aws
-RUN mkdir -p ~/.aws
-RUN cp credentials ~/.aws/credentials
+RUN ~/.pyenv/versions/$(cat long.txt)/bin/python$(cat short.txt) -m pip install --upgrade pip || true
+RUN rm long.txt
+RUN rm short.txt
 # ubuntu/docker.sh
 RUN #!/bin/bash
 RUN sudo apt-get update -y
 RUN sudo apt install -y ca-certificates curl gnupg lsb-release
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN sudo apt-get update -y
 RUN sudo apt install docker-ce docker-ce-cli containerd.io -y
-RUN pip3 install wheel || true
-RUN pip3 install docker-compose || true
+RUN sudo groupadd -f docker
 RUN sudo usermod -aG docker $USER || true
 RUN newgrp docker
-# ubuntu/toolbox.sh
+RUN sudo systemctl enable docker.service
+RUN sudo systemctl enable containerd.service
+RUN pip3 install wheel || true
+RUN pip3 install docker-compose || true# ubuntu/toolbox.sh
 RUN echo "download manual"
 RUN sudo apt-get install -y fuse
 # ubuntu/rust.sh
@@ -83,6 +74,20 @@ RUN pip3 install --upgrade streamdeck-ui || true
 RUN rustup update || true
 
 ADD . /root/install
+# ubuntu/aws.sh
+RUN sudo apt-get install -y unzip curl
+RUN curl -s https://deb.nodesource.com/setup_18.x | sudo bash
+RUN sudo apt-get install -y nodejs
+RUN node -v
+RUN sudo npm install -g aws-cdk
+RUN # aws cli
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN sudo ./aws/install
+RUN mkdir -p ~/.aws
+RUN cp ~/install/ubuntu/credentials ~/.aws/credentials
+RUN rm awscliv2.zip
+RUN rm -rf aws
 # ubuntu/streamdeck.sh
 RUN sudo apt-get update -y
 RUN sudo apt-get install -y libhidapi-libusb0 libxcb-xinerama0 udev
