@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=streamdeck
-Exec=streamdeck --no-ui
+Exec=~/.pyenv/shims/streamdeck --no-ui
 X-GNOME-Autostart-enabled=true
