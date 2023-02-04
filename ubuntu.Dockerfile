@@ -1,24 +1,24 @@
-FROM ubuntu:22.04
+FROM ubuntu:22.04 AS base
 RUN apt-get update -y
 WORKDIR /root
-RUN apt-get install -y sudo
+RUN apt-get install -y sudo software-properties-common
 
 # Workaround for pyenv
 ENV HOME  /root
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
-
+ADD . /root/install
 # ubuntu/basic.sh
+FROM base AS basic
 RUN sudo apt-get update -y
 RUN # net-tools for ifconfig
 RUN # nethog for network traffic monitoring
 RUN # iotop for IO monitoring
 RUN sudo apt-get install -y curl git vim ncdu net-tools nethogs htop iotop jq
-RUN # cp .bashrc ~/.bashrc
-RUN # cp .bash_aliases ~/.bash_aliases
 # RUN bash ~/install/ubuntu/snap.sh
 
 # ubuntu/pyenv.sh
+FROM basic AS  pyenv
 RUN #!/bin/bash
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 RUN sudo apt-get update -y
@@ -38,6 +38,7 @@ RUN ~/.pyenv/versions/$(cat long.txt)/bin/python$(cat short.txt) -m pip install 
 RUN rm long.txt
 RUN rm short.txt
 # ubuntu/docker.sh
+FROM basic AS  docker
 RUN #!/bin/bash
 RUN sudo apt-get update -y
 RUN sudo apt install -y ca-certificates curl gnupg lsb-release
@@ -52,17 +53,21 @@ RUN sudo systemctl enable docker.service
 RUN sudo systemctl enable containerd.service
 RUN pip3 install wheel || true
 RUN pip3 install docker-compose || true# ubuntu/toolbox.sh
+FROM basic AS  toolbox
 RUN echo "download manual"
 RUN sudo apt-get install -y fuse
 # ubuntu/rust.sh
+FROM basic AS  rust
 RUN #!/bin/bash
 RUN sudo apt-get update -y && sudo apt upgrade -y
 RUN sudo apt-get install -y curl build-essential gcc make
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # ubuntu/windows_debugging.sh
+FROM basic AS  windows_debugging
 RUN # debugging windows ...
 RUN sudo apt-get install -y gparted ntfs-3g
 # ubuntu/update.sh
+FROM basic AS  update
 RUN sudo apt-get upgrade -y
 RUN sudo apt-get update -y --fix-missing
 RUN sudo apt-get dist-upgrade -y
@@ -73,8 +78,9 @@ RUN cd ~/.pyenv &&  git pull
 RUN pip3 install --upgrade streamdeck-ui || true
 RUN rustup update || true
 
-ADD . /root/install
+
 # ubuntu/aws.sh
+FROM basic AS  aws
 RUN sudo apt-get install -y unzip curl
 RUN curl -s https://deb.nodesource.com/setup_18.x | sudo bash
 RUN sudo apt-get install -y nodejs
@@ -89,6 +95,7 @@ RUN cp ~/install/ubuntu/credentials ~/.aws/credentials
 RUN rm awscliv2.zip
 RUN rm -rf aws
 # ubuntu/streamdeck.sh
+FROM basic AS  streamdeck
 RUN sudo apt-get update -y
 RUN sudo apt-get install -y libhidapi-libusb0 libxcb-xinerama0 udev
 RUN sudo mkdir -p /etc/udev/rules.d
@@ -98,6 +105,7 @@ RUN pip3  install --user streamdeck_ui || true
 RUN mkdir -p ~/.config/autostart
 RUN cp ~/install/streamdeck/streamdeck_autostart.desktop ~/.config/autostart
 # ubuntu/sublime.sh
+FROM basic AS  sublime
 RUN # download manual latest
 RUN sudo apt-get install -y libgtk-3-0 curl
 RUN curl https://download.sublimetext.com/sublime-text_build-4126_amd64.deb -o sublime-text_build-4126_amd64.deb

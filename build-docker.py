@@ -12,6 +12,10 @@ def main():
                         p = m.group(1)
                         with(open(p, 'rt')) as nested_template:
                             template_handler.write(f"# {p}\n")
+                            if "basic" in p:
+                                template_handler.write(f"FROM base AS basic\n")
+                            else:
+                                template_handler.write(f"FROM basic AS  {p.split('/')[-1].replace('.sh', '') }\n")
                             for l in nested_template:
                                 if (len(l.strip())) > 0:
                                     template_handler.write(f"RUN {l}")

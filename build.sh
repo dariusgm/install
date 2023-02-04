@@ -1,2 +1,2 @@
 python3 build-docker.py
-docker build -f ubuntu.Dockerfile .
+DOCKER_BUILDKIT=1 docker build -f ubuntu.Dockerfile .
