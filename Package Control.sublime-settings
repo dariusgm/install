@@ -5,7 +5,6 @@
     "installed_packages": [
         "AutoFileName",
         "Dockerfile Syntax Highlighting",
-        "IPython Notebook",
         "LSP",
         "LSP-bash",
         "LSP-dockerfile",
@@ -19,6 +18,9 @@
         "Package Control",
         "Python 3",
         "SideBarEnhancements",
-        "Terminal",
+        // rst and Markdown Preview
+        "OmniMarkupPreviewer",
+        // better rst support
+        "RestructuredText Improved",
     ],
 }
