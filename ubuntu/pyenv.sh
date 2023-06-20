@@ -1,4 +1,5 @@
 #!/bin/bash
+# depends on git
 
 DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
 sudo apt-get update -y

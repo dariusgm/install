@@ -1,2 +1,4 @@
 echo "download manual"
-sudo apt-get install -y fuse
+# fuse for UI
+# python-dev for debugging
+sudo apt-get install -y fuse python3-dev
