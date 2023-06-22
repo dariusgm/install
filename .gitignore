@@ -1,3 +1,4 @@
 .idea
 logs
 ubuntu/.smbcredentials
+/windows/private_profile.ps1
