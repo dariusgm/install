@@ -10,7 +10,7 @@ $env:APPS = "$HOME\apps\"
 $env:GIT = "$HOME\apps\git;$HOME\apps\git\bin"
 $env:JAVA_HOME = "$HOME\apps\java17"
 $env:POWERSHELL7 = "$HOME\apps\powershell7"
-$env:NVIM = "$HOME\apps\nvim"
+$env:NVIM = "$HOME\apps\nvim\bin"
 $env:NODE = "$HOME\apps\node"
 $env:PATH = "$env:APPS;$env:GIT;$env:JAVA_HOME\bin;$env:POWERSHELL7;$env:NVIM;$env:NODE;$env:PATH"
 

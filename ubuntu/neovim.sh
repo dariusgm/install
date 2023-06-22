@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install -y ninja-build gettext cmake unzip curl git
+sudo apt-get install -y ninja-build gettext cmake unzip curl git file
 git clone https://github.com/neovim/neovim  ~/neovim
 cd ~/neovim
 git checkout stable

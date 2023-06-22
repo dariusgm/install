@@ -6,11 +6,15 @@
 # depends on rust
 # depends on neovim
 # depends on lazygit
+# depends on powershell
+# depends on aws
 
 sudo npm install -g neovim tree-sitter-cli
 pip install pynvim
 cargo install fd-find
 cargo install ripgrep
+
+
 # install font
 curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/UbuntuMono.zip -o UbuntuMono.zip
 
