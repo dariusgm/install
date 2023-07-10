@@ -12,5 +12,6 @@ $env:JAVA_HOME = "$HOME\apps\java17"
 $env:POWERSHELL7 = "$HOME\apps\powershell7"
 $env:NVIM = "$HOME\apps\nvim\bin"
 $env:NODE = "$HOME\apps\node"
-$env:PATH = "$env:APPS;$env:GIT;$env:JAVA_HOME\bin;$env:POWERSHELL7;$env:NVIM;$env:NODE;$env:PATH"
+$env:LAZYGIT = "$HOME\apps\lazygit"
+$env:PATH = "$env:APPS;$env:GIT;$env:LAZYGIT;$env:JAVA_HOME\bin;$env:POWERSHELL7;$env:NVIM;$env:NODE;$env:PATH"
 
