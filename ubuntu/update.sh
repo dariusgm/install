@@ -2,6 +2,7 @@ sudo apt-get upgrade -y
 sudo apt-get update -y --fix-missing
 sudo apt-get dist-upgrade -y
 sudo apt-get autoremove -y
+sudo snap refresh core || true
 sudo snap refresh || true
 
 pip3 install --upgrade pip || true
