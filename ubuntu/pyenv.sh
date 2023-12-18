@@ -11,7 +11,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # this is done by the file copy
 # eval "$(pyenv init -)" >> "$HOME/.bashrc"
 
-pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | tail -n 1 | awk -F'[[:space:]]' '{print $NF}' > long.txt
+pyenv install --list | grep -v - | grep -v b | grep -v miniforge | grep -v rc | grep -v '2.' | grep -v a | tail -n 1 | awk -F'[[:space:]]' '{print $NF}' > long.txt
 cat long.txt | awk -F'[[:space:]]' '{print $NF}' | awk -F'\.' '{print $1"."$2}' > short.txt
 pyenv install $(cat long.txt) 
 pyenv global $(cat long.txt)
