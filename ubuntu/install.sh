@@ -38,9 +38,6 @@ echo "windows_debugging"
 echo "kdenlive - video editing"
 ./kdenlive.sh > ~/install/logs/kdenlive.log
 
-echo "keepass - secrets manager"
-./keepass.sh > ~/install/logs/keepass.log
-
 # echo "adm driver"
 # ./amd.sh
 
