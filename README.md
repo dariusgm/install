@@ -16,7 +16,7 @@ sudo apt-get update -y && sudo apt-get install -y git && ssh-keyscan -H github.c
 # Instalation
 ## Ubuntu 22.04
 ```bash
-cd && git clone git@github.com:dariusgm/install.git && cd install/ubuntu && ./install.sh
+cd && git clone https://github.com/dariusgm/install.git && cd install/ubuntu && ./install.sh
 ```
 # Post Installation
 ```bash
