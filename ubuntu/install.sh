@@ -8,6 +8,9 @@ echo "basics"
 echo "snaps"
 ./snap.sh > ~/install/logs/snap.log
 
+echo "node"
+./node.sh > ~/install/logs/node.log
+
 echo "pyenv"
 ./pyenv.sh > ~/install/logs/pyenv.log
 
