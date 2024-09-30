@@ -20,3 +20,6 @@ sudo snap install brave
 
 echo "Installing keepassxc"
 sudo snap install keepassxc
+
+echo "Installing upnote"
+sudo snap install upnote
