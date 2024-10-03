@@ -23,3 +23,6 @@ sudo snap install keepassxc
 
 echo "Installing upnote"
 sudo snap install upnote
+
+echo "Installing inkscape"
+snap install inkscape
