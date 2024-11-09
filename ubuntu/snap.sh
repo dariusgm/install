@@ -18,8 +18,8 @@ sudo snap install dbeaver-ce
 echo "Installing brave"
 sudo snap install brave
 
-echo "Installing keepassxc"
-sudo snap install keepassxc
+echo "Installing 1password"
+sudo snap install 1password
 
 echo "Installing upnote"
 sudo snap install upnote
