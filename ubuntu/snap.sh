@@ -9,7 +9,7 @@ echo "Installing discord"
 sudo snap install discord
 
 echo "Installing filezilla"
-snap install --beta filezilla
+sudo snap install --beta filezilla
 # sudo snap install --edge --devmode calibre
 
 echo "Installing dbeaver-ce"
@@ -25,4 +25,7 @@ echo "Installing upnote"
 sudo snap install upnote
 
 echo "Installing inkscape"
-snap install inkscape
+sudo snap install inkscape
+
+echo "Installing MC-Launcher"
+sudo snap install mc-installer 
